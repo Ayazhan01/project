@@ -1,0 +1,28 @@
+<p>findtimetable works!</p>
+<form #login="ngForm" (ngSubmit)="makeRequest(login)" name="login">
+    <div class="form-group">
+        <label for="date">Date</label>
+        <input type="date" name="date" class="from-control" ngModel>
+    </div>
+    <pre></pre>
+    <button class="btn-primary" type="submit">Search</button>
+</form>
+<table *ngIf="timeTableData">
+    <thead>
+
+        <tr>
+            <th>Flight Number</th>
+            <th>Departure Time</th>
+            <th>Arrival Time</th>
+            <th>Airline</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let flight of timeTableData.Flights">
+            <td>{{flight.FlightNumber}}</td>
+            <td>{{flight.DepartureTime}}</td>
+            <td>{{flight.ArrivalTime}}</td>
+            <td>{{flight.Airline}}</td>
+        </tr>
+    </tbody>
+</table>
