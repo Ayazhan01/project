@@ -1,28 +1,168 @@
-<p>findtimetable works!</p>
-<form #login="ngForm" (ngSubmit)="makeRequest(login)" name="login">
-    <div class="form-group">
-        <label for="date">Date</label>
-        <input type="date" name="date" class="from-control" ngModel>
-    </div>
-    <pre></pre>
-    <button class="btn-primary" type="submit">Search</button>
-</form>
-<table *ngIf="timeTableData">
-    <thead>
+<div class="body">
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="#">MyTrip.</a>
+            </div>
+            <ul>
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        <tr>
-            <th>Flight Number</th>
-            <th>Departure Time</th>
-            <th>Arrival Time</th>
-            <th>Airline</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let flight of timeTableData.Flights">
-            <td>{{flight.FlightNumber}}</td>
-            <td>{{flight.DepartureTime}}</td>
-            <td>{{flight.ArrivalTime}}</td>
-            <td>{{flight.Airline}}</td>
-        </tr>
-    </tbody>
-</table>
+
+
+    <div class="image-container">
+        <div class="content-container">
+            <div class="text-block">
+                <h1>Welcome to our flight schedule website!</h1>
+                <p>We offer a comprehensive and up-to-date list of flight schedules from various airlines to help you plan your travels better. Whether you're traveling for business or leisure, our website is a one-stop-shop for all your flight schedule
+                    needs.
+                </p>
+            </div>
+
+
+            <form #login="ngForm" (ngSubmit)="makeRequest(login)" name="login" class="form">
+                <div class="container">
+                    <h3>Flight schedule</h3>
+                    <br>
+                    <label for="from" class="placeholder"></label>
+                    <input type="text" name="from" id="email-address" placeholder="From" ngModel>
+                    <div class="cut"></div>
+
+                    <label for="to" class="placeholder"></label>
+                    <input type="text" name="to" id="email-address" placeholder="To" ngModel>
+                    <div class="cut"></div>
+
+                    <label for="date" class="placeholder"></label>
+                    <input type="date" name="date" id="email-address" placeholder="Enter email" ngModel>
+                    <div class="cut"></div>
+
+                    <button class="btn" type="submit">
+                    <span class="text">Search</span>
+                </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <table *ngIf="timeTableData" id="customers">
+        <thead>
+
+            <tr>
+                <th>Flight</th>
+                <th>Departure Time</th>
+                <th>Arrival Time</th>
+                <th>Journey Duration</th>
+            </tr>
+        </thead>
+        {{log(timeTableData.OTA_AirDetailsRS, "timeTableData")}}
+
+        <tbody>
+
+            <tr *ngFor="let flight of timeTableData.OTA_AirDetailsRS.FlightDetails; let i=index">
+                {{log(flight.FlightLegDetails[0], "flight")}}
+                <td>{{ flight.FlightLegDetails[0].$.FlightNumber }}</td>
+                <td>{{ flight.FlightLegDetails[0].$.DepartureDateTime}}</td>
+                <td>{{ flight.FlightLegDetails[0].$.ArrivalDateTime }}</td>
+                <td>{{ flight.FlightLegDetails[0].$.JourneyDuration}}</td>
+            </tr>
+
+
+        </tbody>
+
+    </table>
+    <br>
+    <br>
+    <div class="about">
+        <br>
+        <br>
+        <div class="card">
+            <div class="card__content">
+                <h3>1</h3>
+                <br>
+                <p>Accurate and reliable flight information provided</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card__content">
+                <h3>2</h3>
+                <br>
+                <p>Easy flight search, schedule check, and booking</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card__content">
+                <h3>3</h3>
+                <br>
+                <p>Range of travel-related services offered</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card__content">
+                <h3>4</h3>
+                <br>
+                <p>24/7 customer support available to assist with queries</p>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+
+    <div class="scroll-container">
+        <div class="image-container2">
+            <img src="../../assets/city.jpg" alt="City">
+            <div class="caption">Explore the world's most exciting cities</div>
+        </div>
+        <div class="image-container2">
+            <img src="../../assets/secound.jpg" alt="Northern Lights">
+            <div class="caption">Experience the beauty of the Northern Lights</div>
+        </div>
+        <div class="image-container2">
+            <img src="../../assets/ocean.jpg" alt="Mountains">
+            <div class="caption">Relax on pristine beaches and explore stunning oceans</div>
+        </div>
+    </div>
+
+    <div class="color"><br>
+        <br>
+        <div class="contact-form">
+            <h2>Contact Us</h2>
+            <form>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+
+                <button class="btn" type="submit">
+                    <span class="text">Sumbit</span>
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="color">
+        <ul class="wrapper">
+            <li class="icon facebook">
+                <span class="tooltip">Facebook</span>
+                <span><i class="fab fa-facebook-f"></i></span>
+            </li>
+            <li class="icon twitter">
+                <span class="tooltip">Twitter</span>
+                <span><i class="fab fa-twitter"></i></span>
+            </li>
+            <li class="icon instagram">
+                <span class="tooltip">Instagram</span>
+                <span><i class="fab fa-instagram"></i></span>
+            </li>
+        </ul>
+    </div>
+</div>
